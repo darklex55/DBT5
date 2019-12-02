@@ -1,3 +1,7 @@
+/* DROP DATABASE IF EXISTS lab1920omada5_project;
+CREATE DATABASE lab1920omada5_project;
+USE lab1920omada5_project; */
+
 CREATE TABLE `clinics` (
  `id` int(4) NOT NULL AUTO_INCREMENT,
  `name` varchar(50) NOT NULL,
@@ -36,7 +40,7 @@ CREATE TABLE `employees` (
  `hire_date` date NOT NULL,
  `salary` float NOT NULL,
  `hours_per_week` int(2) NOT NULL,
- `vacation_left` int(2) NOT NULL,
+ `vacation_days_left` int(2) NOT NULL,
  `department_name` varchar(30) NOT NULL,
  `dept_clinic_id` int(4) NOT NULL,
  PRIMARY KEY (`id`),
@@ -52,8 +56,16 @@ CREATE TABLE `rooms` (
  `clinic_id` int(4) NOT NULL,
  `responsible` varchar(8) NOT NULL,
  PRIMARY KEY (`number`,`clinic_id`),
- FOREIGN KEY (`clinic_id`) REFERENCES `clinics` (`id`),
- FOREIGN KEY (`responsible`) REFERENCES `employees` (`id`)
+ FOREIGN KEY (`clinic_id`) REFERENCES `clinics` (`id`) 
+);
+
+CREATE TABLE `responsibles` (
+ `nurse_id` varchar(8) NOT NULL,
+ `room_clinic_id` int(4) NOT NULL,
+ `room_number` int(5) NOT NULL,
+ PRIMARY KEY (`nurse_id`,`room_clinic_id`, `room_number`),
+ FOREIGN KEY (`nurse_id`) REFERENCES `employees` (`id`),
+ FOREIGN KEY (`room_clinic_id`, `room_number`) REFERENCES `rooms` (`clinic_id`, `number`)
 );
 
 CREATE TABLE `patients` (
@@ -100,18 +112,45 @@ CREATE TABLE `medications` (
  `clinic_id` int(4) NOT NULL,
  PRIMARY KEY (`clinic_id`,`name`),
  FOREIGN KEY (`clinic_id`) REFERENCES `clinics` (`id`)
-)
+);
+
+CREATE TABLE `equipment` (
+ `name` varchar(15) NOT NULL,
+ `type` varchar(40) NOT NULL,
+ `state` boolean NOT NULL,
+ `clinic_id` int(4) NOT NULL,
+ PRIMARY KEY (`name`, `clinic_id`),
+ FOREIGN KEY (`clinic_id`) REFERENCES `clinics` (`id`)
+);
+
+CREATE TABLE `occupied` (
+ `occupied_from` datetime NOT NULL,
+ `occupied_until` datetime NOT NULL,
+ `equipment_name` varchar(15) NOT NULL,
+ `equipment_clinic_id` int(4) NOT NULL,
+ PRIMARY KEY (`equipment_name`, `equipment_clinic_id`),
+ FOREIGN KEY (`equipment_name`, `equipment_clinic_id`) REFERENCES `equipment` (`name`, `clinic_id`)
+);
+
+CREATE TABLE `equipment_requests` (
+ `requested_from` datetime NOT NULL,
+ `requested_until` datetime NOT NULL,
+ `requesting_doctor_id` varchar(8) NOT NULL,
+ `requested_equipment_name` varchar(15) NOT NULL,
+ `requested_equipment_clinic_id` int(4) NOT NULL,
+ PRIMARY KEY (`requesting_doctor_id`, `requested_equipment_name`, `requested_equipment_clinic_id`),
+ FOREIGN KEY (`requesting_doctor_id`) REFERENCES `employees` (`id`),
+ FOREIGN KEY (`requested_equipment_name`, `requested_equipment_clinic_id`) REFERENCES `equipment` (`name`, `clinic_id`)
+);
 
 CREATE TABLE `treats` (
  `diagnosis` text NOT NULL,
- `doctor_id` varchar(8) NOT NULL,
- `patient_code` int(10) NOT NULL,
- `medication_name` varchar(50) NOT NULL,
- `medication_clinic_id` int(4) NOT NULL,
- PRIMARY KEY (`medication_clinic_id`,`medication_name`,`patient_code`,`doctor_id`),
- KEY `doctor_id` (`doctor_id`),
- KEY `patient_code` (`patient_code`),
- FOREIGN KEY (`doctor_id`) REFERENCES `employees` (`id`),
- FOREIGN KEY (`patient_code`) REFERENCES `patients` (`patient_code`),
- FOREIGN KEY (`medication_name`, `medication_clinic_id`) REFERENCES `medications` (`name`, `clinic_id`)
-)
+ `treating_doctor_id` varchar(8) NOT NULL,
+ `treated_patient_code` int(10) NOT NULL,
+ `treating_medication_name` varchar(50) NOT NULL,
+ `treating_medication_clinic_id` int(4) NOT NULL,
+ PRIMARY KEY (`treating_medication_clinic_id`,`treating_medication_name`,`treated_patient_code`,`treating_doctor_id`),
+ FOREIGN KEY (`treating_doctor_id`) REFERENCES `employees` (`id`),
+ FOREIGN KEY (`treated_patient_code`) REFERENCES `patients` (`patient_code`),
+ FOREIGN KEY (`treating_medication_clinic_id`, `treating_medication_name`) REFERENCES `medications` (`clinic_id`, `name`)
+);

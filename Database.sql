@@ -1,0 +1,117 @@
+CREATE TABLE `clinics` (
+ `id` int(4) NOT NULL AUTO_INCREMENT,
+ `name` varchar(50) NOT NULL,
+ `addr_city` varchar(50) NOT NULL,
+ `addr_street` varchar(50) NOT NULL,
+ `addr_number` varchar(5) NOT NULL,
+ `number_floors` int(2) NOT NULL,
+ `number_employees` int(3) NOT NULL,
+ `number_rooms` int(3) NOT NULL,
+ `number_patients` int(4) NOT NULL,
+ PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `departments` (
+ `name` varchar(30) NOT NULL,
+ `number_employees` int(3) NOT NULL,
+ `clinic_id` int(4) NOT NULL,
+ PRIMARY KEY (`name`,`clinic_id`),
+ FOREIGN KEY (`clinic_id`) REFERENCES `clinics` (`id`)
+);
+
+CREATE TABLE `employees` (
+ `id` varchar(8) NOT NULL,
+ `name` varchar(50) NOT NULL,
+ `surname` varchar(50) NOT NULL,
+ `amka` int(11) NOT NULL,
+ `afm` int(10) NOT NULL,
+ `birth_date` date NOT NULL,
+ `gender` varchar(1) NOT NULL,
+ `telephone` varchar(15) NOT NULL,
+ `email` varchar(100) NOT NULL,
+ `addr_city` varchar(50) NOT NULL,
+ `addr_street` varchar(50) NOT NULL,
+ `addr_number` varchar(50) NOT NULL,
+ `specialty` varchar(50) NOT NULL,
+ `hire_date` date NOT NULL,
+ `salary` float NOT NULL,
+ `hours_per_week` int(2) NOT NULL,
+ `vacation_left` int(2) NOT NULL,
+ `department_name` varchar(30) NOT NULL,
+ `dept_clinic_id` int(4) NOT NULL,
+ PRIMARY KEY (`id`),
+ FOREIGN KEY (`department_name`, `dept_clinic_id`) REFERENCES `departments` (`name`, `clinic_id`)
+);
+
+CREATE TABLE `rooms` (
+ `number` int(5) NOT NULL,
+ `floor` int(2) NOT NULL,
+ `capacity` int(2) NOT NULL,
+ `number_patients` int(2) NOT NULL,
+ `price` int(3) NOT NULL,
+ `clinic_id` int(4) NOT NULL,
+ `responsible` varchar(8) NOT NULL,
+ PRIMARY KEY (`number`,`clinic_id`),
+ FOREIGN KEY (`clinic_id`) REFERENCES `clinics` (`id`),
+ FOREIGN KEY (`responsible`) REFERENCES `employees` (`id`)
+);
+
+CREATE TABLE `patients` (
+ `patient_code` int(10) NOT NULL,
+ `id` varchar(8),
+ `name` varchar(50),
+ `surname` varchar(50),
+ `amka` int(11),
+ `afm` int(10),
+ `birth_date` date,
+ `gender` varchar(1),
+ `telephone` varchar(15),
+ `addr_city` varchar(50),
+ `addr_street` varchar(50),
+ `addr_number` varchar(50),
+ `admission_date` date NOT NULL,
+ `discharge_date` date,
+ `admission_reason` text NOT NULL,
+ `blood_type` varchar(3),
+ `patient_room` int(5),
+ `patient_clinic_id` int(4),
+ `attended_by` varchar(8) NOT NULL,
+ PRIMARY KEY (`patient_code`),
+ FOREIGN KEY (`patient_room`, `patient_clinic_id`) REFERENCES `rooms` (`number`, `clinic_id`),
+ FOREIGN KEY (`attended_by`) REFERENCES `employees` (`id`)
+);
+
+CREATE TABLE `emergency_contacts` (
+ `name` varchar(50) NOT NULL,
+ `surname` varchar(50) NOT NULL,
+ `telephone` varchar(15),
+ `relationship` varchar(30),
+ `cont_patient_code` int(10) NOT NULL,
+ PRIMARY KEY (`cont_patient_code`,`name`,`surname`),
+ FOREIGN KEY (`cont_patient_code`) REFERENCES `patients` (`patient_code`)
+);
+
+CREATE TABLE `medications` (
+ `name` varchar(50) NOT NULL,
+ `type` varchar(100) NOT NULL,
+ `active_substance` varchar(200) NOT NULL,
+ `quantity` int(3) NOT NULL,
+ `price` int(5),
+ `clinic_id` int(4) NOT NULL,
+ PRIMARY KEY (`clinic_id`,`name`),
+ FOREIGN KEY (`clinic_id`) REFERENCES `clinics` (`id`)
+)
+
+CREATE TABLE `treats` (
+ `diagnosis` text NOT NULL,
+ `doctor_id` varchar(8) NOT NULL,
+ `patient_code` int(10) NOT NULL,
+ `medication_name` varchar(50) NOT NULL,
+ `medication_clinic_id` int(4) NOT NULL,
+ PRIMARY KEY (`medication_clinic_id`,`medication_name`,`patient_code`,`doctor_id`),
+ KEY `doctor_id` (`doctor_id`),
+ KEY `patient_code` (`patient_code`),
+ FOREIGN KEY (`doctor_id`) REFERENCES `employees` (`id`),
+ FOREIGN KEY (`patient_code`) REFERENCES `patients` (`patient_code`),
+ FOREIGN KEY (`medication_name`, `medication_clinic_id`) REFERENCES `medications` (`name`, `clinic_id`)
+)

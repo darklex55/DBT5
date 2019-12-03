@@ -2,6 +2,10 @@
 CREATE DATABASE lab1920omada5_project;
 USE lab1920omada5_project; */
 
+CREATE DATABASE IF NOT EXISTS lab1920omada5_project;
+USE lab1920omada5_project;
+
+
 CREATE TABLE `clinics` (
  `id` int(4) NOT NULL AUTO_INCREMENT,
  `name` varchar(50) NOT NULL,
@@ -27,8 +31,8 @@ CREATE TABLE `employees` (
  `id` varchar(8) NOT NULL,
  `name` varchar(50) NOT NULL,
  `surname` varchar(50) NOT NULL,
- `amka` int(11) NOT NULL,
- `afm` int(10) NOT NULL,
+ `amka` bigint(11) NOT NULL,
+ `afm` bigint(10) NOT NULL,
  `birth_date` date NOT NULL,
  `gender` varchar(1) NOT NULL,
  `telephone` varchar(15) NOT NULL,
@@ -54,7 +58,6 @@ CREATE TABLE `rooms` (
  `number_patients` int(2) NOT NULL,
  `price` int(3) NOT NULL,
  `clinic_id` int(4) NOT NULL,
- `responsible` varchar(8) NOT NULL,
  PRIMARY KEY (`number`,`clinic_id`),
  FOREIGN KEY (`clinic_id`) REFERENCES `clinics` (`id`) 
 );
@@ -73,8 +76,8 @@ CREATE TABLE `patients` (
  `id` varchar(8),
  `name` varchar(50),
  `surname` varchar(50),
- `amka` int(11),
- `afm` int(10),
+ `amka` bigint(11),
+ `afm` bigint(10),
  `birth_date` date,
  `gender` varchar(1),
  `telephone` varchar(15),

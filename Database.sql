@@ -84,6 +84,7 @@ CREATE TABLE `patients` (
  `admission_date` date NOT NULL,
  `discharge_date` date,
  `admission_reason` text NOT NULL,
+ `current_fee` float NOT NULL,
  `blood_type` varchar(3),
  `patient_room` int(5),
  `patient_clinic_id` int(4),

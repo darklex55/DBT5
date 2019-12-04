@@ -132,7 +132,7 @@ CREATE TABLE `occupied` (
  `occupied_until` datetime NOT NULL,
  `equipment_name` varchar(15) NOT NULL,
  `equipment_clinic_id` int(4) NOT NULL,
- PRIMARY KEY (`equipment_name`, `equipment_clinic_id`),
+ PRIMARY KEY (`equipment_name`, `equipment_clinic_id`, `occupied_from`, `occupied_until`),
  FOREIGN KEY (`equipment_name`, `equipment_clinic_id`) REFERENCES `equipment` (`name`, `clinic_id`)
 );
 
@@ -142,7 +142,7 @@ CREATE TABLE `equipment_requests` (
  `requesting_doctor_id` varchar(8) NOT NULL,
  `requested_equipment_name` varchar(15) NOT NULL,
  `requested_equipment_clinic_id` int(4) NOT NULL,
- PRIMARY KEY (`requesting_doctor_id`, `requested_equipment_name`, `requested_equipment_clinic_id`),
+ PRIMARY KEY (`requesting_doctor_id`, `requested_equipment_name`, `requested_equipment_clinic_id`, `requested_from`, `requested_until`),
  FOREIGN KEY (`requesting_doctor_id`) REFERENCES `employees` (`id`),
  FOREIGN KEY (`requested_equipment_name`, `requested_equipment_clinic_id`) REFERENCES `equipment` (`name`, `clinic_id`)
 );

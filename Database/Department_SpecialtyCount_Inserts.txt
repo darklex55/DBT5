@@ -1,0 +1,77 @@
+update departments set number_employees = 2 where clinic_id=1 and name = 'Pathologiko';
+update departments set number_employees = 2 where clinic_id=2 and name = 'Pathologiko';
+update departments set number_employees = 3 where clinic_id=3 and name = 'Pathologiko';
+update departments set number_employees = 3 where clinic_id=4 and name = 'Pathologiko';
+update departments set number_employees = 1 where clinic_id=5 and name = 'Pathologiko';
+
+update departments set number_employees = 0 where clinic_id=1 and name = 'Kardiologiko';
+update departments set number_employees = 1 where clinic_id=2 and name = 'Kardiologiko';
+update departments set number_employees = 2 where clinic_id=3 and name = 'Kardiologiko';
+update departments set number_employees = 5 where clinic_id=4 and name = 'Kardiologiko';
+update departments set number_employees = 1 where clinic_id=5 and name = 'Kardiologiko';
+
+update departments set number_employees = 2 where clinic_id=1 and name = 'Pneumatologiko';
+update departments set number_employees = 3 where clinic_id=2 and name = 'Pneumatologiko';
+update departments set number_employees = 6 where clinic_id=3 and name = 'Pneumatologiko';
+update departments set number_employees = 4 where clinic_id=4 and name = 'Pneumatologiko';
+update departments set number_employees = 6 where clinic_id=5 and name = 'Pneumatologiko';
+
+update departments set number_employees = 1 where clinic_id=1 and name = 'Othalmiatriko';
+update departments set number_employees = 3 where clinic_id=2 and name = 'Othalmiatriko';
+update departments set number_employees = 1 where clinic_id=3 and name = 'Othalmiatriko';
+update departments set number_employees = 2 where clinic_id=4 and name = 'Othalmiatriko';
+update departments set number_employees = 4 where clinic_id=5 and name = 'Othalmiatriko';
+
+update departments set number_employees = 1 where clinic_id=1 and name = 'Gynaikologiko';
+update departments set number_employees = 2 where clinic_id=2 and name = 'Gynaikologiko';
+update departments set number_employees = 2 where clinic_id=3 and name = 'Gynaikologiko';
+update departments set number_employees = 1 where clinic_id=4 and name = 'Gynaikologiko';
+update departments set number_employees = 3 where clinic_id=5 and name = 'Gynaikologiko';
+
+update departments set number_employees = 3 where clinic_id=1 and name = 'Odontiatriko';
+update departments set number_employees = 3 where clinic_id=2 and name = 'Odontiatriko';
+update departments set number_employees = 3 where clinic_id=3 and name = 'Odontiatriko';
+update departments set number_employees = 2 where clinic_id=4 and name = 'Odontiatriko';
+update departments set number_employees = 1 where clinic_id=5 and name = 'Odontiatriko';
+
+update departments set number_employees = 0 where clinic_id=1 and name = 'Orthopediko';
+update departments set number_employees = 0 where clinic_id=2 and name = 'Orthopediko';
+update departments set number_employees = 2 where clinic_id=3 and name = 'Orthopediko';
+update departments set number_employees = 0 where clinic_id=4 and name = 'Orthopediko';
+update departments set number_employees = 1 where clinic_id=5 and name = 'Orthopediko';
+
+update departments set number_employees = 0 where clinic_id=1 and name = 'Paidiatriko';
+update departments set number_employees = 1 where clinic_id=2 and name = 'Paidiatriko';
+update departments set number_employees = 0 where clinic_id=3 and name = 'Paidiatriko';
+update departments set number_employees = 2 where clinic_id=4 and name = 'Paidiatriko';
+update departments set number_employees = 3 where clinic_id=5 and name = 'Paidiatriko';
+
+update departments set number_employees = 0 where clinic_id=1 and name = 'Mikroviologiko';
+update departments set number_employees = 2 where clinic_id=2 and name = 'Mikroviologiko';
+update departments set number_employees = 2 where clinic_id=3 and name = 'Mikroviologiko';
+update departments set number_employees = 2 where clinic_id=4 and name = 'Mikroviologiko';
+update departments set number_employees = 1 where clinic_id=5 and name = 'Mikroviologiko';
+
+update departments set number_employees = 2 where clinic_id=1 and name = 'Ogologiko';
+update departments set number_employees = 2 where clinic_id=2 and name = 'Ogologiko';
+update departments set number_employees = 3 where clinic_id=3 and name = 'Ogologiko';
+update departments set number_employees = 4 where clinic_id=4 and name = 'Ogologiko';
+update departments set number_employees = 4 where clinic_id=5 and name = 'Ogologiko';
+
+update departments set number_employees = 1 where clinic_id=1 and name = 'Chirourgiko';
+update departments set number_employees = 2 where clinic_id=2 and name = 'Chirourgiko';
+update departments set number_employees = 1 where clinic_id=3 and name = 'Chirourgiko';
+update departments set number_employees = 3 where clinic_id=4 and name = 'Chirourgiko';
+update departments set number_employees = 1 where clinic_id=5 and name = 'Chirourgiko';
+
+update departments set number_employees = 0 where clinic_id=1 and name = 'Psyxiatriko';
+update departments set number_employees = 2 where clinic_id=2 and name = 'Psyxiatriko';
+update departments set number_employees = 1 where clinic_id=3 and name = 'Psyxiatriko';
+update departments set number_employees = 1 where clinic_id=4 and name = 'Psyxiatriko';
+update departments set number_employees = 0 where clinic_id=5 and name = 'Psyxiatriko';
+
+update departments set number_employees = 1 where clinic_id=1 and name = 'Endorkinologiko';
+update departments set number_employees = 1 where clinic_id=2 and name = 'Endorkinologiko';
+update departments set number_employees = 1 where clinic_id=3 and name = 'Endorkinologiko';
+update departments set number_employees = 3 where clinic_id=4 and name = 'Endorkinologiko';
+update departments set number_employees = 0 where clinic_id=5 and name = 'Endorkinologiko';

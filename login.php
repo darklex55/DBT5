@@ -133,7 +133,7 @@ function render_html($error_code) {
   <meta http-equiv="Expires" content="0" />
 
   <!-- Icons-->
-  <link href="./css/font-awesome.min.css" rel="stylesheet"/>
+  <link href="./css/icons/font-awesome.min.css" rel="stylesheet"/>
 
   <!-- Styles -->
   <link href="./css/style.css" rel="stylesheet"/>

@@ -37,7 +37,7 @@ if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
             $dbconnect = new Connection();
             $db = $dbconnect->openConnection();
 
-            $query = $db->prepare("SELECT `id`, `password`, `specialty`, `dept_clinic_id`, count(*) AS num_rows FROM `employees` WHERE `email` = :email");
+            $query = $db->prepare("SELECT `id`, `password`, `specialty`, `dept_clinic_id`, `name`, `surname`, `gender`, count(*) AS num_rows FROM `employees` WHERE `email` = :email");
             $query->execute(['email' => $email]);
             $result = $query->fetch(PDO::FETCH_ASSOC);
 
@@ -47,6 +47,8 @@ if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
             $database_pass = $result['password'];
             $database_specialty = $result['specialty'];
             $database_clinic_id = $result['dept_clinic_id'];
+            $database_name = $result['name'] . " " . $result['surname'];
+            $database_gender = $result['gender'];
             $num_of_rows = $result['num_rows'];
 
             // Checks if the user exists.
@@ -85,6 +87,8 @@ if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
                     // Update session variables and redirect
                     $_SESSION['user_id'] = $database_id;
                     $_SESSION['clinic_id'] = $database_clinic_id;
+                    $_SESSION['name'] = $database_name;
+                    $_SESSION['gender'] = $database_gender;
                     if($database_specialty == 'Nurse') {
                         $_SESSION['access_level'] = 2;
                     } else {

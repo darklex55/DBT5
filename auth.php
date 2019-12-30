@@ -9,6 +9,8 @@ if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
         $user_id = $_SESSION['user_id'];
         $access_level = $_SESSION['access_level'];
         $clinic_id = $_SESSION['clinic_id'];
+        $name = $_SESSION['name'];
+        $gender = $_SESSION['gender'];
 
         // Check if the id values are valid (WIP)
         if (strlen($user_id) > 0 && strlen($access_level) > 0 && strlen($clinic_id) > 0) {

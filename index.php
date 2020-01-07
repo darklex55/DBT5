@@ -31,7 +31,7 @@ header("Expires: 0");
     <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="./index.php">
       <img class="navbar-brand-full" src="img/logo.svg" width="89" height="25" alt="Clinic Logo">
       <img class="navbar-brand-minimized" src="img/sygnet.svg" width="30" height="30" alt="Clinic Logo">
     </a>
@@ -49,7 +49,7 @@ header("Expires: 0");
         <a class="nav-link" href="#">Equipment</a>
       </li>
       <li class="nav-item px-3">
-        <a class="nav-link" href="#">Medications</a>
+        <a class="nav-link" href="./available_medications.php">Medications</a>
       </li>
       <li class="nav-item px-3">
         <a class="nav-link" href="#">Treatments</a>
@@ -69,7 +69,7 @@ header("Expires: 0");
         <a class="nav-link" href="#">Rooms</a>
       </li>
       <li class="nav-item px-3">
-        <a class="nav-link" href="#">Medications</a>
+        <a class="nav-link" href="./available_medications.php">Medications</a>
       </li>
       <li class="nav-item px-3">
         <a class="nav-link" href="#">New Patient</a>
@@ -119,7 +119,7 @@ header("Expires: 0");
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="./available_medications.php">
               <i class="nav-icon fa fa-briefcase-medical"></i> Medications
             </a>
           </li>
@@ -129,7 +129,7 @@ header("Expires: 0");
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="./available_doctors.php">
               <i class="nav-icon fa fa-user-md"></i> Doctors
             </a>
           </li>
@@ -147,7 +147,7 @@ header("Expires: 0");
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="./available_medications.php">
               <i class="nav-icon fa fa-briefcase-medical"></i> Medications
             </a>
           </li>
@@ -157,7 +157,7 @@ header("Expires: 0");
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="./available_doctors.php">
               <i class="nav-icon fa fa-user-md"></i> Doctors
             </a>
           </li>
@@ -229,7 +229,7 @@ header("Expires: 0");
                   <div class="card text-white bg-success">
                     <div class="card-body pb-0">
                       <div class="text-value">
-                        <a href="#" class="text-white"><i style="margin-right: 10px;" class="fa fa-user-md"></i>View available doctors</a>
+                        <a href="./available_doctors.php" class="text-white"><i style="margin-right: 10px;" class="fa fa-user-md"></i>View available doctors</a>
                       </div>
                       <div><br></div>
                     </div>

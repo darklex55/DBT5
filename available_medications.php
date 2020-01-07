@@ -24,7 +24,7 @@ header("Expires: 0");
   <!-- Styles -->
   <link href="./css/style.css" rel="stylesheet"/>
 
-  <title>Available Doctors</title>
+  <title>Available Medications</title>
 </head>
 <body class="app header-fixed sidebar-fixed">
   <header class="app-header navbar">
@@ -129,7 +129,7 @@ header("Expires: 0");
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./available_doctors.php">
+            <a class="nav-link" href="#">
               <i class="nav-icon fa fa-user-md"></i> Doctors
             </a>
           </li>
@@ -157,7 +157,7 @@ header("Expires: 0");
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./available_doctors.php">
+            <a class="nav-link" href="#">
               <i class="nav-icon fa fa-user-md"></i> Doctors
             </a>
           </li>
@@ -177,20 +177,19 @@ header("Expires: 0");
         <div id="routerOutlet" class="animated-fadeIn">
 
           <div class="card">
-            <div class="card-header">Doctors</div>
+            <div class="card-header">Medications</div>
               <div class="card-body">
                 <table class="table table-responsive-sm">
                   <thead>
                     <tr>
                       <th>Name</th>
-                      <th>Department</th>
-                      <th>Specialty</th>
-                      <th>Email</th>
-                      <th>Telephone</th>
+                      <th>Type</th>
+                      <th>Substance</th>
+                      <th>Quantity</th>
                       <th>Status</th>
                     </tr>
                   </thead>
-                  <tbody id="doctors">
+                  <tbody id="medications">
                     <?php
                       try{
                         $dbconnect = new Connection();
@@ -200,18 +199,17 @@ header("Expires: 0");
                         $dbconnect->closeConnection();
                       }
 
-                      $query = $db->prepare("SELECT `name`, `surname`, `specialty`, `department_name`, `telephone`, `email`, `vacation_days_left` FROM `employees` WHERE `specialty` <> 'Nurse' AND `dept_clinic_id`= :clinic ORDER BY `department_name`, `name` ASC");
+                      $query = $db->prepare("SELECT `name`, `type`, `active_substance`, `quantity` FROM `medications` WHERE  `clinic_id`= :clinic ORDER BY `type`, `name` ASC");
               				$query->execute(['clinic' => $clinic_id]);
               				$result = $query->fetchAll(PDO::FETCH_ASSOC);
 
               				foreach ($result as $index=>$row) {
               					echo "<tr>" .
-              					"<td>" . $row['name'] . " " . $row['surname'] . "</td>" .
-              					"<td>" . $row['department_name'] . "</td>" .
-                        "<td>" . $row['specialty'] . "</td>" .
-              					"<td>" . $row['email'] . "</td>" .
-              					"<td>" . $row['telephone'] . "</td>";
-                        echo ($row['vacation_days_left'] == 0) ? '<td><span class="badge badge-success">Active</span></td>' : '<td><span class="badge badge-danger">On Vacation</span></td>';
+              					"<td>" . $row['name'] . "</td>" .
+              					"<td>" . $row['type'] . "</td>" .
+                        "<td>" . $row['active_substance'] . "</td>" .
+              					"<td>" . $row['quantity'] . "</td>";
+                        echo ($row['quantity'] < 50) ? (($row['quantity'] > 0) ? '<td><span class="badge badge-warning">Scarce</span></td>' : '<td><span class="badge badge-danger">No Stock</span></td>') : '<td><span class="badge badge-success">In Stock</span></td>';
               					echo "</tr>";
               				}
 

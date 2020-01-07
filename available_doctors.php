@@ -177,73 +177,49 @@ header("Expires: 0");
         <div id="routerOutlet" class="animated-fadeIn">
 
           <div class="card">
-            <div class="card-body">
+            <div class="card-header">Doctors</div>
+              <div class="card-body">
+                <table class="table table-responsive-sm">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Department</th>
+                      <th>Specialty</th>
+                      <th>Email</th>
+                      <th>Telephone</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="doctors">
+                    <?php
+                      try{
+                        $dbconnect = new Connection();
+                        $db = $dbconnect->openConnection();
+                      }catch(PDOException $error){
+                        echo "<p id='connerror'>A connection error has occured.<br>Please contact us.<br>Error code: </p>" . $error->getMessage();
+                        $dbconnect->closeConnection();
+                      }
 
-              <div class="row">
-                <div class="col-sm-5">
-                  <h4 class="card-title mb-0">Welcome!</h4>
-                  <div class="small text-muted">to our web management services</div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="text-value">We really appreciate your work here and we want to make it as easy as possible!</div>
-                <h5>As a <?php echo ($access_level == 1) ? "doctor" : "nurse"; ?>, you can use this web app to do the following:</h5>
-                <br>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-6 col-lg-3">
-                  <div class="card text-white bg-danger">
-                    <div class="card-body pb-0">
-                      <?php echo ($access_level == 1) ?
-                      '<a href="#" class="text-value text-white"><i style="margin-right: 10px;" class="fa fa-stethoscope" ></i>Treat your patients</a>' :
-                      '<a href="#" class="text-value text-white"><i style="margin-right: 10px;" class="fa fa-ambulance"></i>Admit a new patient</a>'
-                      ?>
-                      <div><br></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                  <div class="card text-white bg-warning">
-                    <div class="card-body pb-0">
-                      <?php echo ($access_level == 1) ?
-                      '<a href="#" class="text-value text-white"><i style="margin-right: 10px;" class="fa fa-x-ray"></i>Request equipment</a>' :
-                      '<a href="#" class="text-value text-white"><i style="margin-right: 10px;" class="fa fa-hospital"></i>Assign responsibilities</a>'
-                      ?>
-                      <div><br></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                  <div class="card text-white bg-info">
-                    <div class="card-body pb-0">
-                      <div class="text-value">
-                        <a href="#" class="text-white"><i style="margin-right: 10px;" class="fa fa-procedures"></i>View your patients</a>
-                      </div>
-                      <div><br></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                  <div class="card text-white bg-success">
-                    <div class="card-body pb-0">
-                      <div class="text-value">
-                        <a href="#" class="text-white"><i style="margin-right: 10px;" class="fa fa-user-md"></i>View available doctors</a>
-                      </div>
-                      <div><br></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                <h5>and many more.</h5>
-                </div>
-              </div>
+                      $query = $db->prepare("SELECT `name`, `surname`, `specialty`, `department_name`, `telephone`, `email`, `vacation_days_left` FROM `employees` WHERE `specialty` <> 'Nurse' AND `dept_clinic_id`= :clinic");
+              				$query->execute(['clinic' => $clinic_id]);
+              				$result = $query->fetchAll(PDO::FETCH_ASSOC);
 
+              				foreach ($result as $index=>$row) {
+              					echo "<tr>" .
+              					"<td>" . $row['name'] . " " . $row['surname'] . "</td>" .
+              					"<td>" . $row['department_name'] . "</td>" .
+                        "<td>" . $row['specialty'] . "</td>" .
+              					"<td>" . $row['email'] . "</td>" .
+              					"<td>" . $row['telephone'] . "</td>";
+                        echo ($row['vacation_days_left'] == 0) ? '<td><span class="badge badge-success">Active</span></td>' : '<td><span class="badge badge-danger">On Vacation</span></td>';
+              					echo "</tr>";
+              				}
+
+                    ?>
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
 
         </div>
       </div>
@@ -265,11 +241,6 @@ header("Expires: 0");
   <script src="./js/dependencies/jquery.min.js"></script>
   <script src="./js/dependencies/bootstrap.min.js"></script>
   <script src="./js/dependencies/coreui.min.js"></script>
-
-  <!-- Routing -->
-  <script src="./js/templateCallbacks.js"></script>
-  <script src="./js/dependencies/sparouter.min.js"></script>
-  <script src="./js/routing.js"></script>
 
   <!-- <script src="./js/dependencies/popper.min.js"></script>
   <script src="./js/dependencies/pace.min.js"></script>

@@ -187,37 +187,37 @@ header("Expires: 0");
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="text-input">Name</label>
     <div class="col-md-9">
-    <input class="form-control" id="text-input" type="text" name="pname">
+    <input class="form-control" id="pname" type="text" name="pname">
     </div>
     </div>
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="text-input">Surname</label>
     <div class="col-md-9">
-    <input class="form-control" id="text-input" type="text" name="psurname">
+    <input class="form-control" id="psurname" type="text" name="psurname">
     </div>
     </div>
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="text-input">ID</label>
     <div class="col-md-9">
-    <input class="form-control" id="text-input" type="text" name="pID">
+    <input class="form-control" id="pID" type="text" name="pID">
     </div>
     </div>
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="text-input">SSN</label>
     <div class="col-md-9">
-    <input class="form-control" id="text-input" type="text" name="pAMKA">
+    <input class="form-control" id="pAMKA" type="text" name="pAMKA">
     </div>
     </div>
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="text-input">Tax ID</label>
     <div class="col-md-9">
-    <input class="form-control" id="text-input" type="text" name="pAFM">
+    <input class="form-control" id="pAFM" type="text" name="pAFM">
     </div>
     </div>
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="date-input">Birth Date</label>
     <div class="col-md-9">
-    <input class="form-control" id="date-input" type="date" name="pbd" placeholder="pdate">
+    <input class="form-control" id="pbd" type="date" name="pbd" placeholder="pdate">
     <span class="help-block">Please enter a valid date</span>
     </div>
     </div>
@@ -225,64 +225,64 @@ header("Expires: 0");
     <label class="col-md-3 col-form-label">Gender</label>
     <div class="col-md-9 col-form-label">
     <div class="form-check form-check-inline mr-1">
-    <input class="form-check-input" id="inline-radio1" type="radio" value="option1" name="pgenderM">
-    <label class="form-check-label" for="inline-radio1">Male</label>
+    <input class="form-check-input" id="pgenderM" type="radio" value="option1" name="pgenderM">
+    <label class="form-check-label" for="pgenderM">Male</label>
     </div>
     <div class="form-check form-check-inline mr-1">
-    <input class="form-check-input" id="inline-radio2" type="radio" value="option2" name="pgenderF">
-    <label class="form-check-label" for="inline-radio2">Female</label>
+    <input class="form-check-input" id="pgenderF" type="radio" value="option2" name="pgenderF">
+    <label class="form-check-label" for="pgenderF">Female</label>
     </div>
     </div>
     </div>
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="text-input">Telephone</label>
     <div class="col-md-9">
-    <input class="form-control" id="text-input" type="text" name="pphone">
+    <input class="form-control" id="pphone" type="text" name="pphone">
     </div>
     </div>
     <div class="form-group row">
-    <label class="col-md-3 col-form-label" for="text-input">Address:</label>
+    <label class="col-md-3 col-form-label">Address:</label>
     </div>
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="text-input">City</label>
     <div class="col-md-9">
-    <input class="form-control" id="text-input" type="text" name="pcity">
+    <input class="form-control" id="pcity" type="text" name="pcity">
     </div>
     </div>
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="text-input">Street</label>
     <div class="col-md-9">
-    <input class="form-control" id="text-input" type="text" name="pstreet">
+    <input class="form-control" id="pstreet" type="text" name="pstreet">
     </div>
     </div>
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="text-input">Number</label>
     <div class="col-md-9">
-    <input class="form-control" id="text-input" type="text" name="pnumber">
+    <input class="form-control" id="pnumber" type="text" name="pnumber">
     </div>
     </div>
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="date-input">Admission Date</label>
     <div class="col-md-9">
-    <input class="form-control" id="date-input" type="date" name="padmdate" placeholder="date">
+    <input class="form-control" id="padmdate" type="date" name="padmdate" placeholder="date">
     </div>
     </div>
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="date-input">Discharge Date</label>
     <div class="col-md-9">
-    <input class="form-control" id="date-input" type="date" name="pdisdate" placeholder="date">
+    <input class="form-control" id="pdisdate" type="date" name="pdisdate" placeholder="date">
     </div>
     </div>
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="textarea-input">Admission Reason</label>
     <div class="col-md-9">
-    <textarea class="form-control" id="textarea-input" name="preason" rows="9"></textarea>
+    <textarea class="form-control" id="preason" name="preason" rows="9"></textarea>
     </div>
     </div>
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="select1">Blood Type</label>
     <div class="col-md-9">
-    <select class="form-control" id="select1" name="pblood">
+    <select class="form-control" id="pblood" name="pblood">
     <option value="0">A+</option>
     <option value="1">A-</option>
     <option value="2">B+</option>
@@ -297,25 +297,25 @@ header("Expires: 0");
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="text-input">Patient Room</label>
     <div class="col-md-9">
-    <input class="form-control" id="text-input" type="text" name="proom">
+    <input class="form-control" id="proom" type="text" name="proom">
     </div>
     </div>
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="text-input">Attented By</label>
     <div class="col-md-9">
-    <input class="form-control" id="text-input" type="text" name="pdoctor">
+    <input class="form-control" id="pdoctor" type="text" name="pdoctor">
     </div>
     </div>
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="text-input">Current Fee</label>
     <div class="col-md-9">
-    <input class="form-control" id="text-input" type="text" name="pfee">
+    <input class="form-control" id="pfee" type="text" name="pfee">
     </div>
     </div>
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="text-input">Patient Code Number</label>
     <div class="col-md-9">
-    <input class="form-control" id="text-input" type="text" name="pcode">
+    <input class="form-control" id="pcode" type="text" name="pcode">
     </div>
     </div>
     </form>
@@ -330,7 +330,8 @@ header("Expires: 0");
   </div>
 
   <?php
-
+if (isset($_POST['submit'])){
+if(isset($_POST['pcode']) && isset($_POST['pID'])){
 $db = $dbconnect->openConnection();
 $query = $db->prepare("INSERT INTO patients(patient_code,id,name,surname,gender,addr_city,addr_street,addr_number,birth_date,amka,afm,telephone,admission_reason,attended_by,admission_date,discharge_date,blood_type,patient_room,current_fee,patient_clinic_id) VALUES
 (:pc,:id,:fname,:lname,:gender,:city,:street,:num,:bd,:amka,:afm,:tel,:adm_rea,:doc,:aa,:dd,:blood,:room,:fee,:c_id)");
@@ -354,8 +355,7 @@ $query->execute(['pc' => $_POST[pcode],
                 'room' => $_POST[proom],
                 'fee' => $_POST[pfee],
                 'c_id' => $clinic_id]);
-
-                $dbconnect->closeConnection();
+                $dbconnect->closeConnection();}}
 
 ?>
 

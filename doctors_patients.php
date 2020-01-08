@@ -188,6 +188,9 @@ header("Expires: 0");
           <th>Patient Room</th>
           <th>Admission Date</th>
           <th>Admission Reason</th>
+          <th>Relevant's Name</th>
+          <th>Relevant's Relationship</th>
+          <th>Relevant's Phone</th>
           <th>Discharge</th>
           </tr>
           </thead>
@@ -202,20 +205,27 @@ header("Expires: 0");
         $dbconnect->closeConnection();
       }
 
-      $query = $db->prepare("SELECT patient_code, name, surname, amka, gender, blood_type, patient_room, admission_date, admission_reason FROM patients WHERE attended_by = :dID AND discharge_date IS NULL");
+      $query = $db->prepare("SELECT p.patient_code, p.name as pname, p.surname as psurname, p.amka, p.gender, p.blood_type, p.patient_room, p.admission_date, p.admission_reason, ec.name as ecname, ec.surname as ecsurname, ec.relationship as ecrelationship, ec.telephone as ectelephone
+        FROM patients p
+        LEFT JOIN emergency_contacts ec
+        ON ec.cont_patient_code = p.patient_code
+        WHERE attended_by = :dID AND discharge_date IS NULL");
       $query->execute(['dID' => $user_id]);
       $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
       foreach ($result as $index=>$row) {
         echo "<tr>" .
         "<td>" . $row['patient_code'] . "</td>" .
-        "<td>" . $row['name'] . " " . $row['surname'] . "</td>" .
+        "<td>" . $row['pname'] . " " . $row['psurname'] . "</td>" .
         "<td>" . $row['amka'] . "</td>" .
         "<td>" . $row['gender'] . "</td>" .
         "<td>" . $row['blood_type'] . "</td>" .
         "<td>" . $row['patient_room'] . "</td>".
         "<td>" . $row['admission_date'] . "</td>".
-        "<td>" . $row['admission_reason'] . "</td>";
+        "<td>" . $row['admission_reason'] . "</td>".
+        "<td>" . $row['ecname'] . " " . $row['ecsurname'] . "</td>" .
+        "<td>" . $row['ecrelationship'] . "</td>" .
+        "<td>" . $row['ectelephone'] . "</td>" ;
         echo '<td><form name="DischargeButton" action="discharge.php" method="POST"><button class="btn btn-block btn-danger" type="submit" id=discharge name=discharge value='. $row['patient_code'] .'>Discharge</button></form></td>';
         echo "</tr>";
       }

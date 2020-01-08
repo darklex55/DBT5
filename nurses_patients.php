@@ -188,6 +188,9 @@ header("Expires: 0");
           <th>Patient Room</th>
           <th>Admission Date</th>
           <th>Admission Reason</th>
+          <th>Relevant's Name</th>
+          <th>Relevant's Relationship</th>
+          <th>Relevant's Phone</th>
           </tr>
           </thead>
           <tbody>
@@ -201,20 +204,27 @@ header("Expires: 0");
         $dbconnect->closeConnection();
       }
 
-      $query = $db->prepare("SELECT p.patient_code, p.name, p.surname, p.amka, p.gender, p.blood_type, p.patient_room, p.admission_date, p.admission_reason FROM responsibles r, patients p WHERE r.room_clinic_id = p.patient_clinic_id AND r.nurse_id = :nID AND r.room_number = p.patient_room AND p.discharge_date IS NULL;");
+      $query = $db->prepare("SELECT p.patient_code, p.name as pname, p.surname as psurname, p.amka, p.gender, p.blood_type, p.patient_room, p.admission_date, p.admission_reason, ec.name as ecname, ec.surname as ecsurname, ec.relationship as ecrelationship, ec.telephone as ectelephone
+        FROM responsibles r, patients p
+        LEFT JOIN emergency_contacts ec
+        ON ec.cont_patient_code = p.patient_code
+        WHERE r.room_clinic_id = p.patient_clinic_id AND r.nurse_id = :nID AND r.room_number = p.patient_room AND p.discharge_date IS NULL;");
       $query->execute(['nID' => $user_id]);
       $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
       foreach ($result as $index=>$row) {
         echo "<tr>" .
         "<td>" . $row['patient_code'] . "</td>" .
-        "<td>" . $row['name'] . " " . $row['surname'] . "</td>" .
+        "<td>" . $row['pname'] . " " . $row['psurname'] . "</td>" .
         "<td>" . $row['amka'] . "</td>" .
         "<td>" . $row['gender'] . "</td>" .
         "<td>" . $row['blood_type'] . "</td>" .
         "<td>" . $row['patient_room'] . "</td>".
         "<td>" . $row['admission_date'] . "</td>".
-        "<td>" . $row['admission_reason'] . "</td>";
+        "<td>" . $row['admission_reason'] . "</td>".
+        "<td>" . $row['ecname'] . " " . $row['ecsurname'] . "</td>" .
+        "<td>" . $row['ecrelationship'] . "</td>" .
+        "<td>" . $row['ectelephone'] . "</td>";
         echo "</tr>";
       }
 

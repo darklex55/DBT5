@@ -174,24 +174,21 @@ header("Expires: 0");
       <ol class="breadcrumb" style="padding: 0; border: none;">
       </ol>
       <div class="card">
-        <div class="card-header">
-        <i class="fa fa-align-justify"></i> My Patients </div>
+      <div class="card-header">
+      <i class="fa fa-align-justify"></i> Clinic's Nurses </div>
         <div class="card-body">
-          <table class="table table-responsive-sm table-striped">
+          <table class="table table-responsive-sm table-bordered table-striped table-sm">
           <thead>
           <tr>
-          <th>Patient Code</th>
+          <th>Room Number</th>
+          <th>Responsible Nurse - ID</th>
           <th>Name</th>
-          <th>SSN</th>
           <th>Gender</th>
-          <th>Blood Type</th>
-          <th>Patient Room</th>
-          <th>Admission Date</th>
-          <th>Admission Reason</th>
-          <th>Relevant's Name</th>
-          <th>Relevant's Relationship</th>
-          <th>Relevant's Phone</th>
-          <th>Discharge</th>
+          <th>Telephone</th>
+          <th>E-mail</th>
+          <th>Address</th>
+          <th>Work Hours Per Week</th>
+          <th>Assign to New Nurse [ID]</th>
           </tr>
           </thead>
           <tbody>
@@ -205,28 +202,29 @@ header("Expires: 0");
         $dbconnect->closeConnection();
       }
 
-      $query = $db->prepare("SELECT p.patient_code, p.name as pname, p.surname as psurname, p.amka, p.gender, p.blood_type, p.patient_room, p.admission_date, p.admission_reason, ec.name as ecname, ec.surname as ecsurname, ec.relationship as ecrelationship, ec.telephone as ectelephone
-        FROM patients p
-        LEFT JOIN emergency_contacts ec
-        ON ec.cont_patient_code = p.patient_code
-        WHERE attended_by = :dID AND discharge_date IS NULL");
-      $query->execute(['dID' => $user_id]);
+      $query = $db->prepare("SELECT r.number as rnumber, e.id, e.name, e.surname, e.gender, e.telephone, e.email, e.addr_city, e.addr_street, e.addr_number, e.hours_per_week
+        FROM rooms r
+        LEFT JOIN responsibles y ON y.room_number = r.number
+        LEFT JOIN employees e ON e.id = y.nurse_id
+        WHERE r.clinic_id = :cID AND e.dept_clinic_id = :cID AND y.room_clinic_id = :cID;");
+      $query->execute(['cID' => $clinic_id]);
       $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
       foreach ($result as $index=>$row) {
         echo "<tr>" .
-        "<td>" . $row['patient_code'] . "</td>" .
-        "<td>" . $row['pname'] . " " . $row['psurname'] . "</td>" .
-        "<td>" . $row['amka'] . "</td>" .
+        "<td>" . $row['rnumber'] . "</td>" .
+        "<td>" . $row['id'] . "</td>" .
+        "<td>" . $row['name'] . " " . $row['surname'] . "</td>" .
         "<td>" . $row['gender'] . "</td>" .
-        "<td>" . $row['blood_type'] . "</td>" .
-        "<td>" . $row['patient_room'] . "</td>".
-        "<td>" . $row['admission_date'] . "</td>".
-        "<td>" . $row['admission_reason'] . "</td>".
-        "<td>" . $row['ecname'] . " " . $row['ecsurname'] . "</td>" .
-        "<td>" . $row['ecrelationship'] . "</td>" .
-        "<td>" . $row['ectelephone'] . "</td>" ;
-        echo '<td><form name="DischargeButton" action="discharge.php" method="POST"><button class="btn btn-block btn-danger" type="submit" id=discharge name=discharge value='. $row['patient_code'] .'>Discharge</button></form></td>';
+        "<td>" . $row['telephone'] . "</td>" .
+        "<td>" . $row['email'] . "</td>".
+        "<td>" . $row['addr_city'] . " " . $row['addr_street'] . " " . $row['addr_number'] ."</td>" .
+        "<td>" . $row['hours_per_week'] . "</td>".
+        '<td><form name="form" action="responsibility_change.php" method="post"><div class="input-group" action="" method="POST"> <input class="form-control" id=nedit type="text" name="nedit" value=""> <span class="input-group-append">
+        <button class="btn btn-primary" type=submit id = "oedit" name = "oedit" value = '. $row['rnumber'] .'>Edit</button>
+        </span></form>
+        </div></td>';
+
         echo "</tr>";
       }
 

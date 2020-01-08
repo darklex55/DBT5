@@ -32,8 +32,8 @@ header("Expires: 0");
       <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="./index.php">
-      <img class="navbar-brand-full" src="img/logo.svg" width="89" height="25" alt="Clinic Logo">
-      <img class="navbar-brand-minimized" src="img/sygnet.svg" width="30" height="30" alt="Clinic Logo">
+      <img class="navbar-brand-full" src="img/Red_Cross_icon.ico" width="143" height="56" alt="Clinic Logo">
+      <img class="navbar-brand-minimized" src="img/Red_Cross_icon.ico" width="30" height="30" alt="Clinic Logo">
     </a>
     <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
       <span class="navbar-toggler-icon"></span>

@@ -160,7 +160,7 @@ function render_html($error_code) {
                       <i class="fa fa-at"></i>
                     </span>
                   </div>
-                  <input type="email" name="email" id="email" class="form-control" placeholder="Email" required required minlength="10" maxlength="100" autofocus>
+                  <input type="email" name="email" id="email" class="form-control" placeholder="Email" required minlength="10" maxlength="100" autofocus>
                   <div class="valid-feedback">
                     Looks good!
                   </div>
@@ -213,12 +213,12 @@ function render_html($error_code) {
   </div>
 
   <!-- Bootstrap and necessary plugins-->
-  <script src="./js/dependencies/jquery.js"></script>
+  <script src="./js/dependencies/jquery.min.js"></script>
   <script src="./js/dependencies/bootstrap.min.js"></script>
   <script src="./js/dependencies/coreui.min.js"></script>
 
   <!-- Validation script -->
-  <script src="./js/validationLogin.js"></script>
+  <script src="./js/validation.js"></script>
 
 </body>
 </html>

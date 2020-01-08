@@ -12,9 +12,10 @@ if(isset($_POST['discharge'])) {
 		$dbconnect->closeConnection();
 	}
 
-	$query = $db->prepare("UPDATE patients SET discharge_date = :pdddate WHERE patient_code = :pcode");
+	$query = $db->prepare("UPDATE patients SET discharge_date = :pdddate WHERE patient_code = :pcode AND patient_clinic_id = :c_ID");
 	$query->execute(['pcode' => $_POST['discharge'],
-									 'pdddate' => date("Y-m-d")]);
+									 'pdddate' => date("Y-m-d"),
+								   'c_ID' => $clinic_id]);
 }
 header("Location: doctors_patients.php");
 ?>

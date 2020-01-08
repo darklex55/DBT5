@@ -148,13 +148,14 @@ CREATE TABLE `equipment_requests` (
 );
 
 CREATE TABLE `treats` (
+ `date` datetime NOT NULL,
  `diagnosis` text NOT NULL,
  `treatment` text NOT NULL,
  `treating_doctor_id` varchar(8) NOT NULL,
  `treated_patient_code` int(10) NOT NULL,
  `treating_medication_name` varchar(50) NOT NULL,
  `treating_medication_clinic_id` int(4) NOT NULL,
- PRIMARY KEY (`treating_medication_clinic_id`,`treating_medication_name`,`treated_patient_code`,`treating_doctor_id`),
+ PRIMARY KEY (`date`, `treating_medication_clinic_id`,`treating_medication_name`,`treated_patient_code`,`treating_doctor_id`),
  FOREIGN KEY (`treating_doctor_id`) REFERENCES `employees` (`id`),
  FOREIGN KEY (`treated_patient_code`) REFERENCES `patients` (`patient_code`),
  FOREIGN KEY (`treating_medication_clinic_id`, `treating_medication_name`) REFERENCES `medications` (`clinic_id`, `name`)

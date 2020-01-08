@@ -49,8 +49,8 @@ header("Expires: 0");
       <span class="navbar-toggler-icon"></span>
       </button>
       <a class="navbar-brand" href="doctor.php" style="">
-      <img class="navbar-brand-full" src="img/Red_Cross_icon.ico" width="100" height="30" alt="Clinic Group">
-      <img class="navbar-brand-minimized" src="img/Red_Cross_icon.ico" width="120" height="80" alt="Clinic Group">
+        <img class="navbar-brand-full" src="img/logo.svg" width="89" height="25" alt="Clinic Logo">
+        <img class="navbar-brand-minimized" src="img/sygnet.svg" width="30" height="30" alt="Clinic Logo">
       </a>
 
       <ul class="nav navbar-nav d-md-down-none">

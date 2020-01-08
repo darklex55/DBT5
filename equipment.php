@@ -47,16 +47,36 @@ header("Expires: 0");
   ?>
     <ul class="nav navbar-nav d-md-down-none">
       <li class="nav-item px-3">
-        <a class="nav-link" href="#">Dashboard</a>
+        <a class="nav-link" href="./doctors_patients.php">Dashboard</a>
       </li>
       <li class="nav-item px-3">
-        <a class="nav-link" href="#">Equipment</a>
+        <a class="nav-link" href="./equipment.php">Equipment</a>
       </li>
       <li class="nav-item px-3">
         <a class="nav-link" href="./available_medications.php">Medications</a>
       </li>
       <li class="nav-item px-3">
-        <a class="nav-link" href="#">Treatments</a>
+        <a class="nav-link" href="./treat.php">Treatments</a>
+      </li>
+      <li class="nav-item px-3">
+        <a class="nav-link" href="./available_doctors.php">Doctors</a>
+      </li>
+    </ul>
+  <?php } else if ($access_level == 2) {
+    // Navbar for nurses
+  ?>
+    <ul class="nav navbar-nav d-md-down-none">
+      <li class="nav-item px-3">
+        <a class="nav-link" href="./nurses_patients.php">Dashboard</a>
+      </li>
+      <li class="nav-item px-3">
+        <a class="nav-link" href="./nurse_edit_rooms.php">Rooms</a>
+      </li>
+      <li class="nav-item px-3">
+        <a class="nav-link" href="./available_medications.php">Medications</a>
+      </li>
+      <li class="nav-item px-3">
+        <a class="nav-link" href="./add_patient.php">New Patient</a>
       </li>
       <li class="nav-item px-3">
         <a class="nav-link" href="./available_doctors.php">Doctors</a>
@@ -93,12 +113,12 @@ header("Expires: 0");
           // Sidebar for doctors
         ?>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="./doctors_patients.php">
               <i class="nav-icon fa fa-procedures"></i> Dashboard
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="./equipment.php">
               <i class="nav-icon fa fa-x-ray"></i> Equipment
             </a>
           </li>
@@ -108,8 +128,36 @@ header("Expires: 0");
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="./treat.php">
               <i class="nav-icon fa fa-stethoscope"></i> Treatments
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./available_doctors.php">
+              <i class="nav-icon fa fa-user-md"></i> Doctors
+            </a>
+          </li>
+        <?php } else if ($access_level == 2) {
+          // Sidebar for nurses
+        ?>
+          <li class="nav-item">
+            <a class="nav-link" href="./nurses_patients.php">
+              <i class="nav-icon fa fa-procedures"></i> Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./nurse_edit_rooms.php">
+              <i class="nav-icon fa fa-hospital"></i> Rooms
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./available_medications.php">
+              <i class="nav-icon fa fa-briefcase-medical"></i> Medications
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./add_patient.php">
+              <i class="nav-icon fa fa-ambulance"></i> New Patient
             </a>
           </li>
           <li class="nav-item">

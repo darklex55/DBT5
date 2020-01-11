@@ -359,13 +359,5 @@ header("Expires: 0");
   <script src="./js/dependencies/jquery.min.js"></script>
   <script src="./js/dependencies/bootstrap.min.js"></script>
   <script src="./js/dependencies/coreui.min.js"></script>
-
-  <!-- <script src="./js/dependencies/popper.min.js"></script>
-  <script src="./js/dependencies/pace.min.js"></script>
-  <script src="./js/dependencies/perfect-scrollbar.min.js"></script>
-  <script src="./js/dependencies/coreui-utilities.min.js"></script>
-  <script src="./js/dependencies/Chart.min.js"></script>
-  <script src="./js/dependencies/custom-tooltips.min.js"></script>
-  <script src="./js/dependencies/main.js"></script> -->
 </body>
 </html>

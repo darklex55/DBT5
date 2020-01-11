@@ -85,7 +85,7 @@ header("Expires: 0");
     <ul class="nav navbar-nav ml-auto">
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-          <img class="img-avatar" src=<?php echo ($gender == 'm') ? "img/avatar_m.png" : "img/avatar_f.png";?> alt="Profile">
+          <img class="img-avatar" src=<?php echo ($gender == 'M') ? "img/avatar_m.png" : "img/avatar_f.png";?> alt="Profile">
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <div class="dropdown-header text-center">
@@ -200,7 +200,7 @@ header("Expires: 0");
                         $dbconnect->closeConnection();
                       }
 
-                      $query = $db->prepare("SELECT `name`, `surname`, `specialty`, `department_name`, `telephone`, `email`, `vacation_days_left` FROM `employees` WHERE `specialty` <> 'Nurse' AND `dept_clinic_id`= :clinic");
+                      $query = $db->prepare("SELECT `name`, `surname`, `specialty`, `department_name`, `telephone`, `email`, `vacation_days_left` FROM `employees` WHERE `specialty` <> 'Nosileutis' AND `dept_clinic_id`= :clinic");
               				$query->execute(['clinic' => $clinic_id]);
               				$result = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -242,12 +242,5 @@ header("Expires: 0");
   <script src="./js/dependencies/bootstrap.min.js"></script>
   <script src="./js/dependencies/coreui.min.js"></script>
 
-  <!-- <script src="./js/dependencies/popper.min.js"></script>
-  <script src="./js/dependencies/pace.min.js"></script>
-  <script src="./js/dependencies/perfect-scrollbar.min.js"></script>
-  <script src="./js/dependencies/coreui-utilities.min.js"></script>
-  <script src="./js/dependencies/Chart.min.js"></script>
-  <script src="./js/dependencies/custom-tooltips.min.js"></script>
-  <script src="./js/dependencies/main.js"></script> -->
 </body>
 </html>

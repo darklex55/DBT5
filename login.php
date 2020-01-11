@@ -34,7 +34,7 @@ if (isset($_COOKIE[$hashed_name]) && isset($_SESSION['user_id'])) {
         $dbconnect = new Connection();
         $db = $dbconnect->openConnection();
 
-        $query = $db->prepare("SELECT `id`, `password`, `specialty`, `dept_clinic_id`, `name`, `surname`, `gender`, count(*) AS num_rows FROM `employees` WHERE `email` = :email");
+        $query = $db->prepare("SELECT `id`, `password`, `specialty`, `dept_clinic_id`, `name`, `surname`, `gender` FROM `employees` WHERE `email` = :email");
         $query->execute(['email' => $email]);
         $result = $query->fetch(PDO::FETCH_ASSOC);
 
@@ -46,7 +46,11 @@ if (isset($_COOKIE[$hashed_name]) && isset($_SESSION['user_id'])) {
         $database_clinic_id = $result['dept_clinic_id'];
         $database_name = $result['name'] . " " . $result['surname'];
         $database_gender = $result['gender'];
-        $num_of_rows = $result['num_rows'];
+
+        $q = $db->prepare("SELECT count(*) AS num_rows FROM `employees` WHERE `email` = :email");
+        $q->execute(['email' => $email]);
+        $r = $q->fetch(PDO::FETCH_ASSOC);
+        $num_of_rows = $r['num_rows'];
 
         // Checks if the user exists.
         if ($num_of_rows == 1) {
@@ -86,7 +90,7 @@ if (isset($_COOKIE[$hashed_name]) && isset($_SESSION['user_id'])) {
                 $_SESSION['clinic_id'] = $database_clinic_id;
                 $_SESSION['name'] = $database_name;
                 $_SESSION['gender'] = $database_gender;
-                if($database_specialty == 'Nurse') {
+                if($database_specialty == 'Nosileutis') {
                     $_SESSION['access_level'] = 2;
                 } else {
                     $_SESSION['access_level'] = 1;
@@ -114,7 +118,6 @@ if (isset($_COOKIE[$hashed_name]) && isset($_SESSION['user_id'])) {
     render_html(1);
     die(1);
 }
-
 
 function render_html($error_code) {
 ?>

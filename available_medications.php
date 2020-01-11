@@ -85,7 +85,7 @@ header("Expires: 0");
     <ul class="nav navbar-nav ml-auto">
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-          <img class="img-avatar" src=<?php echo ($gender == 'm') ? "img/avatar_m.png" : "img/avatar_f.png";?> alt="Profile">
+          <img class="img-avatar" src=<?php echo ($gender == 'M') ? "img/avatar_m.png" : "img/avatar_f.png";?> alt="Profile">
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <div class="dropdown-header text-center">

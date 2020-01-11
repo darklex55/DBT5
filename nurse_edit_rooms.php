@@ -2,6 +2,10 @@
 require_once "./connect.php";
 require_once "./auth.php";
 
+if($access_level == 1) {
+  header("Location: ./login.php");
+}
+
 header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
 header("Pragma: no-cache"); // HTTP 1.0.
 header("Expires: 0");
@@ -85,7 +89,7 @@ header("Expires: 0");
     <ul class="nav navbar-nav ml-auto">
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-          <img class="img-avatar" src=<?php echo ($gender == 'm') ? "img/avatar_m.png" : "img/avatar_f.png";?> alt="Profile">
+          <img class="img-avatar" src=<?php echo ($gender == 'M') ? "img/avatar_m.png" : "img/avatar_f.png";?> alt="Profile">
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <div class="dropdown-header text-center">
@@ -182,6 +186,7 @@ header("Expires: 0");
           <thead>
           <tr>
           <th>Room Number</th>
+          <th>Room Patients</th>
           <th>Responsible Nurse - ID</th>
           <th>Name</th>
           <th>Gender</th>
@@ -203,7 +208,7 @@ header("Expires: 0");
         $dbconnect->closeConnection();
       }
 
-      $query = $db->prepare("SELECT r.number as rnumber, e.id, e.name, e.surname, e.gender, e.telephone, e.email, e.addr_city, e.addr_street, e.addr_number, e.hours_per_week
+      $query = $db->prepare("SELECT r.number as rnumber, r.number_patients as rnumber_patients, e.id, e.name, e.surname, e.gender, e.telephone, e.email, e.addr_city, e.addr_street, e.addr_number, e.hours_per_week
         FROM rooms r
         LEFT JOIN responsibles y ON y.room_number = r.number
         LEFT JOIN employees e ON e.id = y.nurse_id
@@ -214,6 +219,7 @@ header("Expires: 0");
       foreach ($result as $index=>$row) {
         echo "<tr>" .
         "<td>" . $row['rnumber'] . "</td>" .
+        "<td>" . $row['rnumber_patients'] . "</td>" .
         "<td>" . $row['id'] . "</td>" .
         "<td>" . $row['name'] . " " . $row['surname'] . "</td>" .
         "<td>" . $row['gender'] . "</td>" .

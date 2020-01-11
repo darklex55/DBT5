@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
 
     <!-- Main styles for this application-->
-    <link href="../css/style.css" rel="stylesheet" />
+    <link href="./css/style.css" rel="stylesheet" />
     <title>Equipment</title>
   </head>
   <body class="app flex-row align-items-center">
@@ -62,32 +62,64 @@
                     $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 
                     $oldend = 0;
-                    foreach ($result2 as $index => $range) {
-                      $rangeBegin = strtotime($range['occupied_from']);
-                      $rangeEnd = strtotime($range['occupied_until']);
-                      if ($begin <= $rangeBegin && $end <= $rangeBegin && $begin >= $oldend) {
-                        $query3 = $db->prepare("INSERT INTO `occupied` (`occupied_from`, `occupied_until`, `equipment_name`, `equipment_clinic_id`) VALUES (:ocfrom, :ocuntil, :oceqname, :occlinic);");
-                        $query3->execute(['ocfrom' => date('Y-m-d H:i:s', $begin),
-                                        'ocuntil' => date('Y-m-d H:i:s', $end),
-                                        'oceqname' => $machine['name'],
-                                        'occlinic' => $clinic_id]);
-                        ?>
-                          <h1 class="float-left display-3 mr-4">Success!</h1>
-                          <h4 class="pt-3">The selected equipment is available.</h4>
-                          <p class="text-muted">Equipment Name: <?php echo $machine['name']; ?></p>
-                          <button onclick="window.location.href='./equipment.php'" type="button" class="btn btn-primary">Go Back</button>
-                        <?php
-                        $query4 = $db->prepare("INSERT INTO `equipment_requests` (`requested_from`, `requested_until`, `requesting_doctor_id`, `requested_equipment_name`, `requested_equipment_clinic_id`) VALUES (:rfrom, :runtil, :rdoctor, :reqname, :rclinic)");
-                        $query4->execute(['rfrom' => date('Y-m-d H:i:s', $begin),
-                                        'runtil' => date('Y-m-d H:i:s', $end),
-                                        'rdoctor' => $user_id,
-                                        'reqname' => $machine['name'],
-                                        'rclinic' => $clinic_id]);
-                        $success = 1;
-                        break 2;
+
+                    $q3 = $db->prepare("SELECT count(*) AS results_count FROM `occupied` WHERE `equipment_clinic_id`= :clinic AND `equipment_name`= :eqname");
+                    $q3->execute(['clinic' => $clinic_id,
+                                'eqname' => $machine['name']]);
+                    $num_results2 = $q3->fetch(PDO::FETCH_ASSOC);
+
+                    if ($num_results2['results_count'] == 0) {
+                      $query3 = $db->prepare("INSERT INTO `occupied` (`occupied_from`, `occupied_until`, `equipment_name`, `equipment_clinic_id`) VALUES (:ocfrom, :ocuntil, :oceqname, :occlinic);");
+                      $query3->execute(['ocfrom' => date('Y-m-d H:i:s', $begin),
+                                      'ocuntil' => date('Y-m-d H:i:s', $end),
+                                      'oceqname' => $machine['name'],
+                                      'occlinic' => $clinic_id]);
+                      ?>
+                        <h1 class="float-left display-3 mr-4">Success!</h1>
+                        <h4 class="pt-3">The selected equipment is available.</h4>
+                        <p class="text-muted">Equipment Name: <?php echo $machine['name']; ?></p>
+                        <button onclick="window.location.href='./equipment.php'" type="button" class="btn btn-primary">Go Back</button>
+                      <?php
+                      $query4 = $db->prepare("INSERT INTO `equipment_requests` (`requested_from`, `requested_until`, `requesting_doctor_id`, `requested_equipment_name`, `requested_equipment_clinic_id`) VALUES (:rfrom, :runtil, :rdoctor, :reqname, :rclinic)");
+                      $query4->execute(['rfrom' => date('Y-m-d H:i:s', $begin),
+                                      'runtil' => date('Y-m-d H:i:s', $end),
+                                      'rdoctor' => $user_id,
+                                      'reqname' => $machine['name'],
+                                      'rclinic' => $clinic_id]);
+                      $success = 1;
+                      break;
+                    } else {
+                      foreach ($result2 as $index => $range) {
+                        $rangeBegin = strtotime($range['occupied_from']);
+                        $rangeEnd = strtotime($range['occupied_until']);
+                        echo "rangeBegin: " . $rangeBegin . "\n";
+                        echo "rangeEnd: " . $rangeEnd . "\n";
+                        if ($begin <= $rangeBegin && $end <= $rangeBegin && $begin >= $oldend) {
+                          $query3 = $db->prepare("INSERT INTO `occupied` (`occupied_from`, `occupied_until`, `equipment_name`, `equipment_clinic_id`) VALUES (:ocfrom, :ocuntil, :oceqname, :occlinic);");
+                          $query3->execute(['ocfrom' => date('Y-m-d H:i:s', $begin),
+                                          'ocuntil' => date('Y-m-d H:i:s', $end),
+                                          'oceqname' => $machine['name'],
+                                          'occlinic' => $clinic_id]);
+                          ?>
+                            <h1 class="float-left display-3 mr-4">Success!</h1>
+                            <h4 class="pt-3">The selected equipment is available.</h4>
+                            <p class="text-muted">Equipment Name: <?php echo $machine['name']; ?></p>
+                            <button onclick="window.location.href='./equipment.php'" type="button" class="btn btn-primary">Go Back</button>
+                          <?php
+                          $query4 = $db->prepare("INSERT INTO `equipment_requests` (`requested_from`, `requested_until`, `requesting_doctor_id`, `requested_equipment_name`, `requested_equipment_clinic_id`) VALUES (:rfrom, :runtil, :rdoctor, :reqname, :rclinic)");
+                          $query4->execute(['rfrom' => date('Y-m-d H:i:s', $begin),
+                                          'runtil' => date('Y-m-d H:i:s', $end),
+                                          'rdoctor' => $user_id,
+                                          'reqname' => $machine['name'],
+                                          'rclinic' => $clinic_id]);
+                          $success = 1;
+                          break 2;
+                        }
+                        $oldend = $rangeEnd;
                       }
-                      $oldend = $rangeEnd;
+
                     }
+
                   }
 
                 }

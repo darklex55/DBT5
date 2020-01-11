@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
 
     <!-- Main styles for this application-->
-    <link href="../css/style.css" rel="stylesheet" />
+    <link href="./css/style.css" rel="stylesheet" />
     <title>Treatment</title>
   </head>
   <body class="app flex-row align-items-center">
@@ -42,6 +42,10 @@
                                   'doctor' => $user_id,
                                   'patient' => $patient_code,
                                   'med' => $medicine,
+                                  'clinic' => $clinic_id]);
+
+                  $query2 = $db->prepare("UPDATE `medications` SET `quantity` = `quantity` - 1 WHERE `clinic_id` = :clinic AND `name`= :mname;");
+                  $query2->execute(['mname' => $medicine,
                                   'clinic' => $clinic_id]);
                   ?>
                     <h1 class="float-left display-3 mr-4">Success!</h1>

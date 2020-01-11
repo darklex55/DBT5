@@ -2,6 +2,10 @@
 require_once "./connect.php";
 require_once "./auth.php";
 
+if($access_level == 2) {
+  header("Location: ./login.php");
+}
+
 header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
 header("Pragma: no-cache"); // HTTP 1.0.
 header("Expires: 0");
@@ -85,7 +89,7 @@ header("Expires: 0");
     <ul class="nav navbar-nav ml-auto">
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-          <img class="img-avatar" src=<?php echo ($gender == 'm') ? "img/avatar_m.png" : "img/avatar_f.png";?> alt="Profile">
+          <img class="img-avatar" src=<?php echo ($gender == 'M') ? "img/avatar_m.png" : "img/avatar_f.png";?> alt="Profile">
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <div class="dropdown-header text-center">
@@ -175,8 +179,7 @@ header("Expires: 0");
 
       <div class="container-fluid">
       <div class="card">
-        <div class="card-header">
-        <i class="fa fa-align-justify"></i> My Patients </div>
+        <div class="card-header">My Patients</div>
         <div class="card-body">
           <table class="table table-responsive-sm table-striped">
           <thead>

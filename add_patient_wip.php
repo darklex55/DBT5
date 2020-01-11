@@ -63,10 +63,10 @@ header("Expires: 0");
   ?>
     <ul class="nav navbar-nav d-md-down-none">
       <li class="nav-item px-3">
-        <a class="nav-link" href="./nurses_patients.php">Dashboard</a>
+        <a class="nav-link" href="#">Dashboard</a>
       </li>
       <li class="nav-item px-3">
-        <a class="nav-link" href="./nurse_edit_rooms.php">Rooms</a>
+        <a class="nav-link" href="#">Rooms</a>
       </li>
       <li class="nav-item px-3">
         <a class="nav-link" href="./available_medications.php">Medications</a>
@@ -137,12 +137,12 @@ header("Expires: 0");
           // Sidebar for nurses
         ?>
           <li class="nav-item">
-            <a class="nav-link" href="./nurses_patients.php">
+            <a class="nav-link" href="#">
               <i class="nav-icon fa fa-procedures"></i> Dashboard
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./nurse_edit_rooms.php">
+            <a class="nav-link" href="#">
               <i class="nav-icon fa fa-hospital"></i> Rooms
             </a>
           </li>
@@ -173,13 +173,13 @@ header("Expires: 0");
       <ol class="breadcrumb" style="padding: 0; border: none;">
       </ol>
 
-    <div class="container-fluid">
+      <div class="col-md-6">
     <div class="card">
     <div class="card-header">
     <strong>New Patient Form</strong></div>
     <div class="card-body">
 
-    <form class="form-horizontal" action="insert_patient.php" method="post" enctype="multipart/form-data">
+    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
     <div class="form-group row">
     <div class="col-md-9">
     </div>
@@ -205,19 +205,19 @@ header("Expires: 0");
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="pAMKA">SSN</label>
     <div class="col-md-9">
-    <input class="form-control" id="pAMKA" type="text" name="pAMKA" required min = "0" max="9999999999">
+    <input class="form-control" id="pAMKA" type="text" name="pAMKA">
     </div>
     </div>
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="pAFM">Tax ID</label>
     <div class="col-md-9">
-    <input class="form-control" id="pAFM" type="text" name="pAFM" required min = "0" max="9999999999">
+    <input class="form-control" id="pAFM" type="text" name="pAFM">
     </div>
     </div>
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="pdate">Birth Date</label>
     <div class="col-md-9">
-    <input class="form-control" id="pbd" type="date" name="pbd" placeholder="pdate" required max="<?php echo date('Y-m-d');?>">
+    <input class="form-control" id="pbd" type="date" name="pbd" placeholder="pdate">
     <span class="help-block">Please enter a valid date</span>
     </div>
     </div>
@@ -225,11 +225,11 @@ header("Expires: 0");
     <label class="col-md-3 col-form-label">Gender</label>
     <div class="col-md-9 col-form-label">
     <div class="form-check form-check-inline mr-1">
-    <input class="form-check-input" id="pgenderM" type="radio" value="M" name="pgenderM">
+    <input class="form-check-input" id="pgenderM" type="radio" value="option1" name="pgenderM">
     <label class="form-check-label" for="pgenderM">Male</label>
     </div>
     <div class="form-check form-check-inline mr-1">
-    <input class="form-check-input" id="pgenderF" type="radio" value="F" name="pgenderF">
+    <input class="form-check-input" id="pgenderF" type="radio" value="option2" name="pgenderF">
     <label class="form-check-label" for="pgenderF">Female</label>
     </div>
     </div>
@@ -269,6 +269,19 @@ header("Expires: 0");
     </div>
     <div><div class="form-group row"></div>
     <div><div class="form-group row"></div>
+
+    <div class="form-group row">
+    <label class="col-md-3 col-form-label" for="padmdate">Admission Date</label>
+    <div class="col-md-9">
+    <input class="form-control" id="padmdate" type="date" name="padmdate" placeholder="date">
+    </div>
+    </div>
+    <div class="form-group row">
+    <label class="col-md-3 col-form-label" for="pdisdate">Discharge Date</label>
+    <div class="col-md-9">
+    <input class="form-control" id="pdisdate" type="date" name="pdisdate" placeholder="date">
+    </div>
+    </div>
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="preason">Admission Reason</label>
     <div class="col-md-9">
@@ -279,49 +292,29 @@ header("Expires: 0");
     <label class="col-md-3 col-form-label" for="pblood">Blood Type</label>
     <div class="col-md-9">
     <select class="form-control" id="pblood" name="pblood">
-    <option value="A+">A+</option>
-    <option value="A-">A-</option>
-    <option value="B+">B+</option>
-    <option value="B-">B-</option>
-    <option value="AB+">AB+</option>
-    <option value="AB-">AB-</option>
-    <option value="O+">O+</option>
-    <option value="O-">O-</option>
+    <option value="0">A+</option>
+    <option value="1">A-</option>
+    <option value="2">B+</option>
+    <option value="3">B-</option>
+    <option value="4">AB+</option>
+    <option value="5">AB-</option>
+    <option value="6">O+</option>
+    <option value="7">O-</option>
     </select>
     </div>
     </div>
     <div class="form-group row">
-      <label class="col-md-3 col-form-label" for="proom">Patient Room</label>
-      <div class="col-md-9">
-        <select class="custom-select" name="proom" id="proom" required>
-          <option value="">No Selection</option>
-          <?php
-            $query = $db->prepare("SELECT `number`, `floor` FROM `rooms` WHERE `clinic_id`= :clinic AND `capacity` > `number_patients` ");
-            $query->execute(['clinic' => $clinic_id]);
-            $result4 = $query->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($result4 as $index=>$row4) {
-              echo '<option value="' . $row4['number'] . '">'. $row4['number'] . ' - '. $row4['floor'] . ' floor' . '</option>';
-            }
-          ?>
-        </select>
-      </div>
+    <label class="col-md-3 col-form-label" for="proom">Patient Room</label>
+    <div class="col-md-9">
+    <input class="form-control" id="proom" type="text" name="proom">
+    </div>
     </div>
     <div class="form-group row">
-        <label class="col-md-3 col-form-label" for="pdoctor">Attending Doctor</label>
-        <div class="col-md-9">
-          <select class="custom-select" name="pdoctor" id="pdoctor" required>
-            <option value="">No Selection</option>
-            <?php
-              $query = $db->prepare("SELECT `name`, `surname`, `id`, `specialty` FROM `employees` WHERE `dept_clinic_id`= :clinic AND `specialty` <> 'Nosileutis' AND `vacation_days_left` = 0");
-              $query->execute(['clinic' => $clinic_id]);
-              $result2 = $query->fetchAll(PDO::FETCH_ASSOC);
-              foreach ($result2 as $index=>$row2) {
-                echo '<option value="' . $row2['id'] . '">'. $row2['name'] . ' '. $row2['surname'] . ' - ' . $row2['specialty']  . '</option>';
-              }
-            ?>
-          </select>
-        </div>
-      </div>
+    <label class="col-md-3 col-form-label" for="pdoctor">Attented By</label>
+    <div class="col-md-9">
+    <input class="form-control" id="pdoctor" type="text" name="pdoctor">
+    </div>
+    </div>
     <div class="form-group row">
     <label class="col-md-3 col-form-label" for="pfee">Current Fee</label>
     <div class="col-md-9">
@@ -344,6 +337,40 @@ header("Expires: 0");
     </main>
   </div>
 
+  <?php
+if (isset($_POST['submit'])){
+  if(isset($_POST['pcode']) && isset($_POST['pID']) && isset($_POST['pname']) && isset($_POST['psurname']) && isset($_POST['pcity']) && isset($_POST['pstreet']) && isset($_POST['pnumber']) && isset($_POST['pbd']) && isset($_POST['pAMKA']) && isset($_POST['pAFM']) && isset($_POST['pdoctor']) && isset($_POST['padmdate'])&& isset($_POST['pblood'])&& isset($_POST['proom'])&& isset($_POST[pfee])){
+    $db = $dbconnect->openConnection();
+    $query = $db->prepare("INSERT INTO patients(patient_code,id,name,surname,gender,addr_city,addr_street,addr_number,birth_date,amka,afm,telephone,admission_reason,attended_by,admission_date,discharge_date,blood_type,patient_room,current_fee,patient_clinic_id) VALUES
+    (:pc,:id,:fname,:lname,:gender,:city,:street,:num,:bd,:amka,:afm,:tel,:adm_rea,:doc,:aa,:dd,:blood,:room,:fee,:c_id)");
+    $query->execute(['pc' => $_POST[pcode],
+                    'id' => $_POST[pID],
+                    'fname' => $_POST[pname],
+                    'lname' => $_POST[psurname],
+                    'gender' => $pgenderF,
+                    'city' => $_POST[pcity],
+                    'street' => $_POST[pstreet],
+                    'num' => $_POST[pnumber],
+                    'bd' => $_POST[pbd],
+                    'amka' => $_POST[pAMKA],
+                    'afm' => $_POST[pAFM],
+                    'tel' => $_POST[pphone],
+                    'adm_rea' => $_POST[preason],
+                    'doc' => $_POST[pdoctor],
+                    'aa' => $_POST[padmdate],
+                    'dd' => $_POST[pdisdate],
+                    'blood' => $_POST[pblood],
+                    'room' => $_POST[proom],
+                    'fee' => $_POST[pfee],
+                    'c_id' => $clinic_id]);
+
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    $dbconnect->closeConnection();}
+}
+
+?>
+
+
   <footer class="app-footer">
     <div>
       <a>Databases Team 5</a>
@@ -359,6 +386,11 @@ header("Expires: 0");
   <script src="./js/dependencies/jquery.min.js"></script>
   <script src="./js/dependencies/bootstrap.min.js"></script>
   <script src="./js/dependencies/coreui.min.js"></script>
+
+  <!-- Routing -->
+  <script src="./js/templateCallbacks.js"></script>
+  <script src="./js/dependencies/sparouter.min.js"></script>
+  <script src="./js/routing.js"></script>
 
   <!-- <script src="./js/dependencies/popper.min.js"></script>
   <script src="./js/dependencies/pace.min.js"></script>

@@ -1,9 +1,9 @@
 <?php
 Class Connection {
     // Change these accordingly
-	private $server = "mysql:host=localhost;dbname=lab1920omada5_website;charset=utf8";
-	private $user = "root"; //"lab1920omada5"; //"root";
-	private $pass = ""; //"okontopidisapantisestonalex"; //"";
+	private $server = "mysql:host=localhost;dbname=lab1920omada5_webapp;charset=utf8";
+	private $user = "lab1920omada5"; //"lab1920omada5"; //"root";
+	private $pass = "okontopidisapantisestonalex"; //"okontopidisapantisestonalex"; //"";
 	private $options  = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, PDO::ATTR_EMULATE_PREPARES, false);
 
 	protected $connection;

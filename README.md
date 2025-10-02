@@ -4,7 +4,7 @@ This is a team project we worked on for our 7th semester Databases course in 201
 Our team consists of:
 - [Ilias Chanis](https://github.com/liakoyras)
 - [Alexandros Karasakalidis](https://github.com/darklex55)
-- [Yannis Maslaris](https://github.com/DataMas)
+- [Yannis Maslaris](https://github.com/ymssa)
 
 The tasks we had to complete for the project are as following:
 
